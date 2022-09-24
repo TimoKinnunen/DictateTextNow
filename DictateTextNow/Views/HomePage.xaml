@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="DictateTextNow.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="0,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="0,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="0,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="12,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="24,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="24,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="PageTitleTextBlock" 
+                   Grid.Row="0" 
+                   Style="{StaticResource TitleTextBlockStyle}" 
+                   Text="Dictate text now"/>
+
+        <ScrollViewer x:Name="AppBarButtonScrollViewer"
+                      Grid.Row="1">
+            <StackPanel x:Name="AppBarButtonStackPanel"
+                        Orientation="Horizontal">
+                <AppBarButton x:Name="HomeAppBarButton"
+                              Tapped="HomeAppBarButton_Tapped"
+                              Label="Home"
+                              Icon="Home"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="PageContentScrollViewer"
+                      Grid.Row="2"
+                      Style="{StaticResource PageContentScrollViewerStyle}">
+            <StackPanel x:Name="PageContentStackPanel">
+
+                <!--page content goes here-->
+
+                <StackPanel HorizontalAlignment="Left" 
+                            VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Language: " 
+                                   Margin="10,0,0,0" 
+                                   VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cbLanguageSelection" 
+                                  SelectionChanged="CbLanguageSelection_SelectionChanged" 
+                                  Margin="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnContinuousRecognize" 
+                                Click="ContinuousRecognize_Click" 
+                                IsEnabled="False" 
+                                Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Microphone"/>
+                                <TextBlock x:Name="DictationButtonText" 
+                                           Text=" Dictate" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnClearText" 
+                                Click="BtnClearText_Click"  
+                                IsEnabled="False" 
+                                Margin="10,10,0,0" 
+                                Content="Clear text" />
+                        <Button x:Name="btnCopyText" 
+                                Click="BtnCopyText_Click"  
+                                IsEnabled="False" 
+                                Margin="10,10,0,0" 
+                                Content="Copy text" />
+                    </StackPanel>
+                    <TextBlock Margin="0,14.5,0,0" 
+                               Text="Tap the microphone, and speak. This page provides continuous, multi-sentence dictation with progressing hypothesis." 
+                               TextWrapping="Wrap" 
+                               Style="{StaticResource BodyTextBlockStyle}"/>
+                    <TextBlock Margin="0,14.5,0,0" 
+                               Text="Text dictation" 
+                               TextWrapping="Wrap" 
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <TextBox x:Name="dictationTextBox" 
+                             Margin="0,14.5,0,0" 
+                             IsReadOnly="True" 
+                             TextWrapping="Wrap" 
+                             ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                             ScrollViewer.VerticalScrollMode="Enabled"
+                             MinHeight="120" 
+                             TextChanged="DictationTextBox_TextChanged"/>
+                    <TextBlock x:Name="discardedTextBlock" 
+                               Margin="0,10,0,0" 
+                               TextWrapping="WrapWholeWords" 
+                               Visibility="Collapsed" 
+                               Foreground="Red"
+                               Style="{StaticResource BodyTextBlockStyle}"/>
+                    <TextBlock x:Name="hlOpenPrivacySettings" 
+                               Visibility="Collapsed" 
+                               TextWrapping="WrapWholeWords">The speech recognition privacy settings have not been accepted. <Hyperlink Click="OpenPrivacySettings_Click">Open Privacy Settings</Hyperlink> to review the privacy policy and enable personalization.
+                    </TextBlock>
+                </StackPanel>
+
+                <!--page content goes here-->
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

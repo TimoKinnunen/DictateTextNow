@@ -1,0 +1,94 @@
+﻿<Page
+    x:Class="DictateTextNow.Views.InstructionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="0,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="0,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="0,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="12,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="24,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="24,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="PageTitleTextBlock" 
+                   Grid.Row="0" 
+                   Style="{StaticResource TitleTextBlockStyle}" 
+                   Text="Instructions"/>
+
+        <ScrollViewer x:Name="AppBarButtonScrollViewer"
+                      Grid.Row="1">
+            <StackPanel x:Name="AppBarButtonStackPanel"
+                        Orientation="Horizontal">
+                <AppBarButton x:Name="HomeAppBarButton"
+                              Tapped="HomeAppBarButton_Tapped"
+                              Label="Home"
+                              Icon="Home"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="PageContentScrollViewer"
+                      Grid.Row="2"
+                      Style="{StaticResource PageContentScrollViewerStyle}">
+            <StackPanel x:Name="PageContentStackPanel">
+
+                <!--page content goes here-->
+                <TextBlock Style="{StaticResource SubTitleTextBlockStyle}">Home page</TextBlock>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}">
+                    Choose language and dictate text.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource SubTitleTextBlockStyle}">Microphone</TextBlock>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}">
+                    Settings->Privacy->Microphone. Set it to 'On'.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource SubTitleTextBlockStyle}">Speech</TextBlock>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}">
+                    Settings->Privacy->Speech. Set it to 'On'.
+                </TextBlock>
+
+                <!--<TextBlock Style="{StaticResource SubTitleTextBlockStyle}">Instructions as .pdf-file</TextBlock>-->
+                <!--<TextBlock Style="{StaticResource BodyTextBlockStyle}">-->
+                <!--<HyperlinkButton Content="Instructions as .pdf-file" 
+                                 Margin="0,12,0,0"
+                                 NavigateUri="~/Documents/DictateTextNowInstructions.pdf"
+                                 Style="{StaticResource TextBlockButtonStyle}"/>-->
+                <Button x:Name="PdfButton"
+                        Margin="0,12,0,0"
+                        Content="Instructions as .pdf-file"
+                        Tapped="PdfButton_Tapped">
+                </Button>
+                <!--</TextBlock>-->
+                <!--page content goes here-->
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+

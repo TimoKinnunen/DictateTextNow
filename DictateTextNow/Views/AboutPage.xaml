@@ -1,0 +1,124 @@
+﻿<Page
+    x:Class="DictateTextNow.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="0,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="0,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="0,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="12,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="24,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="24,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="PageTitleTextBlock" 
+                   Grid.Row="0" 
+                   Style="{StaticResource TitleTextBlockStyle}" 
+                   Text="About"/>
+
+        <ScrollViewer x:Name="AppBarButtonScrollViewer"
+                      Grid.Row="1">
+            <StackPanel x:Name="AppBarButtonStackPanel"
+                        Orientation="Horizontal">
+                <AppBarButton x:Name="HomeAppBarButton"
+                              Tapped="HomeAppBarButton_Tapped"
+                              Label="Home"
+                              Icon="Home"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="PageContentScrollViewer"
+                      Grid.Row="2"
+                      Style="{StaticResource PageContentScrollViewerStyle}">
+            <StackPanel x:Name="PageContentStackPanel">
+
+                <!--page content goes here-->
+
+                <Grid x:Name="VersionGrid">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.RowSpan="3"
+                            Grid.Column="1" 
+                            BorderBrush="DimGray" 
+                            BorderThickness="1"
+                            IsHitTestVisible="False"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,40,0">
+                        <Border.Background>
+                            <SolidColorBrush Color="{ThemeResource SystemAccentColor}" />
+                        </Border.Background>
+                        <Image x:Name="DictateTextNowImage"
+                               Stretch="None" />
+                    </Border>
+                    <TextBlock x:Name="AppDisplayNameTextBlock" 
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Margin="0,12,0,0" 
+                               Style="{StaticResource BodyTextBlockStyle}"/>
+                    <TextBlock x:Name="PublisherTextBlock"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Margin="0,12,0,0" 
+                               Style="{StaticResource BodyTextBlockStyle}"/>
+                    <TextBlock x:Name="VersionTextBlock" 
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Style="{StaticResource BodyTextBlockStyle}"/>
+
+                </Grid>
+
+                <HyperlinkButton Content="DictateTextNow support website" 
+                                 Margin="0,12,0,0"
+                                 NavigateUri="http://DictateTextNow.blogspot.com/"
+                                 Style="{StaticResource TextBlockButtonStyle}"/>
+
+                <TextBlock Style="{StaticResource SubTitleTextBlockStyle}">History behind this app</TextBlock>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}">
+                    To dictate a letter for example is a dream. Now I am closer. Not perfect though.
+                    When do we get languages like Swedish and Finnish?
+                </TextBlock>
+
+                <!--page content goes here-->
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
